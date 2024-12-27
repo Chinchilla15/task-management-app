@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router";
-import DashBoardLayout from "@component/layouts/DashBoardLayout";
+import DashBoardLayout from "@components/layouts/DashBoardLayout";
 
 function App() {
   return (
