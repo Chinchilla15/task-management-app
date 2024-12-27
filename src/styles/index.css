@@ -7,6 +7,69 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Neutral Colors */
+  --color-neutral-1: #ffffff;
+  --color-neutral-2: #94979a;
+  --color-neutral-3: #393d41;
+  --color-neutral-4: #2c2f33;
+  --color-neutral-5: #222528;
+
+  /* Primary Colors */
+  --color-primary-1: #f4ccc8;
+  --color-primary-2: #eba59e;
+  --color-primary-3: #e27d73;
+  --color-primary-4: #da584b;
+
+  /* Secondary Colors */
+  --color-secondary-1: #c8e1bc;
+  --color-secondary-2: #aad199;
+  --color-secondary-3: #8dc275;
+  --color-secondary-4: #70b252;
+
+  /* Tertiary Colors */
+  --color-tertiary-1: #f9eed7;
+  --color-tertiary-2: #f2daab;
+  --color-tertiary-3: #ebc77f;
+  --color-tertiary-4: #e5b454;
+
+  /* Font Sizes, Line Heights, and Letter Spacing for Display */
+  --font-display-xl-size: 64px;
+  --font-display-xl-line-height: 88px;
+  --font-display-xl-letter-spacing: 1px;
+
+  --font-display-l-size: 56px;
+  --font-display-l-line-height: 72px;
+  --font-display-l-letter-spacing: 1px;
+
+  --font-display-m-size: 48px;
+  --font-display-m-line-height: 56px;
+  --font-display-m-letter-spacing: 1px;
+
+  --font-display-s-size: 32px;
+  --font-display-s-line-height: 48px;
+  --font-display-s-letter-spacing: 1px;
+
+  --font-display-xs-size: 24px;
+  --font-display-xs-line-height: 32px;
+  --font-display-xs-letter-spacing: 1px;
+
+  /*Font Sizes, Line Heights, and Letter Spacing for Body */
+  --font-body-xl-size: 20px;
+  --font-body-xl-line-height: 32px;
+  --font-body-xl-letter-spacing: 0.75px;
+
+  --font-body-l-size: 18px;
+  --font-body-l-line-height: 32px;
+  --font-body-l-letter-spacing: 0.75px;
+
+  --font-body-m-size: 15px;
+  --font-body-m-line-height: 24px;
+  --font-body-m-letter-spacing: 0.75px;
+
+  --font-body-s-size: 13px;
+  --font-body-s-line-height: 22px;
+  --font-body-s-letter-spacing: 0.25px;
 }
 
 * {
@@ -14,4 +77,3 @@
   margin: 0;
   padding: 0;
 }
-
