@@ -1,5 +1,6 @@
 import * as React from "react";
 
+// Navigation Types
 export interface NavItem {
   id: string;
   label: string;
@@ -12,12 +13,7 @@ export interface NavLinkProps {
   onSelect: (id: string) => void;
 }
 
-export interface TaskColumnProps {
-  title: string;
-  count: string;
-  children: React.ReactNode;
-}
-
+// Button Types
 export type ButtonVariant =
   | "primary"
   | "ghost"
@@ -35,19 +31,10 @@ export interface ButtonProps
   size?: ButtonSize;
   asChild?: boolean;
   icon?: React.ElementType;
+  noAnimation?: boolean;
 }
 
-export interface UnsplashPhoto {
-  id: string;
-  urls: {
-    raw: string;
-    full: string;
-    regular: string;
-    small: string;
-    thumb: string;
-  };
-}
-
+// Avatar Types
 export type AvatarSize = "32" | "40" | "48";
 
 export interface AvatarContextValue {
@@ -63,4 +50,76 @@ export type AvatarProps = React.HTMLAttributes<HTMLDivElement> & {
 export interface AvatarImageProps
   extends React.ImgHTMLAttributes<HTMLImageElement> {
   onLoadingStatusChange?: (status: "loading" | "loaded" | "error") => void;
+}
+
+// Task Types
+export type TaskStatus = "Working" | "In Progress" | "Completed";
+
+export type ViewType = "list" | "grid";
+
+export type TaskAction =
+  | { type: "view"; id: string }
+  | { type: "edit"; id: string }
+  | { type: "delete"; id: string };
+
+export interface BaseTaskProps {
+  id: string;
+  title: string;
+  points: number;
+  date: string;
+  assignee: string;
+  status: TaskStatus;
+}
+
+export interface TaskProps extends BaseTaskProps {
+  attachments?: number;
+  comments?: number;
+}
+
+// Task Components Props
+export interface TaskColumnProps {
+  title: string;
+  count: string;
+  children: React.ReactNode;
+}
+
+export interface TaskViewControlsProps {
+  viewType: ViewType;
+  onViewChange: (viewType: ViewType) => void;
+}
+
+export interface TaskContextValue {
+  viewType: ViewType;
+  isListView: boolean;
+}
+
+export interface TaskProviderProps {
+  viewType: ViewType;
+  children: React.ReactNode;
+}
+
+export interface TaskContainerProps {
+  tasks: TaskProps[];
+  onTaskAction?: (action: TaskAction) => void;
+}
+
+export type TaskListProps = TaskContainerProps;
+export type TaskGridProps = TaskContainerProps;
+export type TaskTableProps = TaskContainerProps;
+
+export interface TaskRowProps {
+  task: TaskProps;
+  onAction?: (action: TaskAction) => void;
+}
+
+// Image Types
+export interface UnsplashPhoto {
+  id: string;
+  urls: {
+    raw: string;
+    full: string;
+    regular: string;
+    small: string;
+    thumb: string;
+  };
 }
