@@ -2,14 +2,13 @@ import Clip from "@icons/white/Clip.svg?react";
 import Message from "@icons/white/Message.svg?react";
 import Dots from "@icons/Dots.svg?react";
 import type { TaskProps } from "@types";
-import { Avatar, AvatarFallback, AvatarImage } from "@components/common/Avatar";
+import { Avatar, AvatarFallback } from "@components/common/Avatar";
 
 //WIP: TaskCard component
 export default function TaskCard({
   title,
   points,
   date,
-  assignee,
   attachments = 5,
   comments = 3,
 }: TaskProps) {
