@@ -1,5 +1,6 @@
 const buttonStyles = {
-  base: "rounded-lg font-medium transition-all ease-out duration-300 focus:outline-none p-2",
+  base: "rounded-lg font-medium focus:outline-none p-2",
+  animation: "transition-all ease-out duration-300",
   variants: {
     primary: "bg-primary-4 text-white hover:bg-primary-2 active:bg-primary-3",
     ghost: "text-blue-500 hover:bg-blue-50",
@@ -8,7 +9,7 @@ const buttonStyles = {
     "transparent-white": "bg-transparent text-white hover:bg-white/10",
     "transparent-neutral":
       "bg-transparent text-neutral-2 hover:bg-neutral-2/10",
-    bordered: "border border-primary-4 bg-transparent hover:bg-primary-4/10",
+    bordered: "border border-primary-4 text-primary-4 bg-transparent",
   },
   sizes: {
     sm: "px-3 py-1.5 text-sm",

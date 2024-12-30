@@ -11,6 +11,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size = "md",
       asChild,
       icon: Icon,
+      noAnimation = false,
       children,
       ...props
     },
@@ -18,6 +19,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const classes = cn(
       buttonStyles.base,
+      !noAnimation && buttonStyles.animation,
       buttonStyles.variants[variant],
       buttonStyles.sizes[size],
       className,
