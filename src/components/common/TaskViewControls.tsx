@@ -9,7 +9,7 @@ export function TaskViewControls({
   onViewChange,
 }: TaskViewControlsProps) {
   return (
-    <div className="mt-6 flex items-center justify-between py-1">
+    <div className="my-6 flex items-center justify-between py-1">
       <div className="flex gap-2">
         <Button
           variant={`${viewType === "list" ? "bordered" : "transparent-white"}`}
