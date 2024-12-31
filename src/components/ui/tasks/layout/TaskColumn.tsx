@@ -9,7 +9,8 @@ export default function TaskColumn({
     <div className="min-w-[300px] flex-1">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-body-l text-xl font-semibold text-neutral-1">
-          {title} <span className="text-muted-foreground">({count})</span>
+          {title}
+          {count && <span className="text-muted-foreground">({count})</span>}
         </h2>
       </div>
       <div className="h-[calc(100vh-270px)] overflow-y-auto">
