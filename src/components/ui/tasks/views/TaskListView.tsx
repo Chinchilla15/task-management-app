@@ -9,7 +9,7 @@ export default function TaskListView({ tasks, onTaskAction }: TaskListProps) {
   }));
 
   return (
-    <div className="p-4">
+    <div className="mt-1 w-full">
       <TaskTable tasks={tableData} onTaskAction={onTaskAction} />
     </div>
   );
