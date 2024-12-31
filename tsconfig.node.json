@@ -16,7 +16,6 @@
       "@lib/*": ["lib/*"],
       "@styles/*": ["styles/*"],
       "@graphql/*": ["graphql/*"],
-      "@apollo/*": ["apollo/*"],
       "@icons/*": ["assets/icons/*"]
     },
 
@@ -34,5 +33,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts", "vite-env.d.ts"]
 }
