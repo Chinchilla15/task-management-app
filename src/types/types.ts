@@ -1,4 +1,6 @@
 import * as React from "react";
+import type { Task } from "@graphql/graphql";
+import { tagStyles } from "@/config/tagVariants";
 
 // Navigation Types
 export interface NavItem {
@@ -99,7 +101,7 @@ export interface TaskProviderProps {
 }
 
 export interface TaskContainerProps {
-  tasks: TaskProps[];
+  tasks: Task[];
   onTaskAction?: (action: TaskAction) => void;
 }
 
@@ -108,7 +110,12 @@ export type TaskGridProps = TaskContainerProps;
 export type TaskTableProps = TaskContainerProps;
 
 export interface TaskRowProps {
-  task: TaskProps;
+  task: Task;
+  onAction?: (action: TaskAction) => void;
+}
+export interface TaskCardProps {
+  id: string;
+  task: Task;
   onAction?: (action: TaskAction) => void;
 }
 
@@ -122,4 +129,13 @@ export interface UnsplashPhoto {
     small: string;
     thumb: string;
   };
+}
+
+// Tag Types
+export type TagName = "IOS" | "ANDROID" | "RAILS" | "REACT" | "NODE_JS";
+export type TagVariant = keyof typeof tagStyles.variants;
+
+export interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
+  variant?: TagVariant;
+  icon?: React.ElementType;
 }
