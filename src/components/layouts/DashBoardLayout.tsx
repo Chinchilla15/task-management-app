@@ -2,7 +2,7 @@ import MasterSidebar from "@components/ui/MasterSidebar";
 import Header from "@components/ui/Header";
 import { TaskViewControls } from "@components/common/TaskViewControls";
 import { useState } from "react";
-import { Task } from "../ui/tasks/TaskRoot";
+import { Task } from "../tasks/TaskRoot";
 import type { ViewType } from "@types";
 import { useGetTasksQuery } from "@graphql/graphql";
 
