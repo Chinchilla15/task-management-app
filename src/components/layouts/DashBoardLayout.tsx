@@ -9,7 +9,7 @@ import { useGetTasksQuery } from "@graphql/graphql";
 export default function DashBoardLayout() {
   const [viewType, setViewType] = useState<ViewType>("grid");
 
-  const { data } = useGetTasksQuery({ variables: { input: {} } });
+  const { data, loading } = useGetTasksQuery({ variables: { input: {} } });
 
   return (
     <div className="min-h-screen bg-neutral-5">
@@ -21,9 +21,9 @@ export default function DashBoardLayout() {
           <main className="hide-scrollbar h-[calc(100vh-200px)] flex-1 overflow-y-auto">
             <Task.Provider viewType={viewType}>
               {viewType === "list" ? (
-                <Task.List tasks={data?.tasks || []} />
+                <Task.List tasks={data?.tasks || []} loading={loading} />
               ) : (
-                <Task.Grid tasks={data?.tasks || []} />
+                <Task.Grid tasks={data?.tasks || []} loading={loading} />
               )}
             </Task.Provider>
           </main>
