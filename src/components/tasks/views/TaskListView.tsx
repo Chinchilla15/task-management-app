@@ -2,7 +2,7 @@ import {
   Table,
   TableHeader,
   TableBody,
-} from "@/components/ui/tasks/layout/TaskTable";
+} from "@/components/tasks/layout/TaskTable";
 import TaskRow from "../ui/TaskRow";
 import { groupTasksByStatus, formatStatus, cn } from "@/lib/utils";
 import type { TaskListProps } from "@types";
