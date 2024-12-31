@@ -1,6 +1,7 @@
 import * as React from "react";
 import type { Task } from "@graphql/graphql";
 import { tagStyles } from "@/config/tagVariants";
+import { COLUMN_WIDTHS } from "@/config/tableStyles";
 
 // Navigation Types
 export interface NavItem {
@@ -54,6 +55,27 @@ export interface AvatarImageProps
   onLoadingStatusChange?: (status: "loading" | "loaded" | "error") => void;
 }
 
+export type AvatarFallbackProps = React.HTMLAttributes<HTMLDivElement>;
+
+// Table Types
+
+export type TableContextType = {
+  isOpen: boolean;
+  setIsOpen: (value: boolean) => void;
+  status: string;
+  columnWidths: typeof COLUMN_WIDTHS;
+};
+
+export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
+  status: string;
+}
+
+export interface TableHeaderProps
+  extends React.HTMLAttributes<HTMLTableSectionElement> {}
+
+export interface TableBodyProps
+  extends React.HTMLAttributes<HTMLTableSectionElement> {}
+
 // Task Types
 export type TaskStatus = "Working" | "In Progress" | "Completed";
 
@@ -81,7 +103,7 @@ export interface TaskProps extends BaseTaskProps {
 // Task Components Props
 export interface TaskColumnProps {
   title: string;
-  count: string;
+  count?: string;
   children: React.ReactNode;
 }
 
@@ -105,8 +127,8 @@ export interface TaskContainerProps {
   onTaskAction?: (action: TaskAction) => void;
 }
 
-export type TaskListProps = TaskContainerProps;
-export type TaskGridProps = TaskContainerProps;
+export type TaskListProps = TaskContainerProps & { loading?: boolean };
+export type TaskGridProps = TaskContainerProps & { loading?: boolean };
 export type TaskTableProps = TaskContainerProps;
 
 export interface TaskRowProps {

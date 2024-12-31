@@ -1,12 +1,12 @@
-import * as React from "react";
 import { cn } from "@lib/utils";
 import { AvatarContext, useAvatarContext } from "@/context/useAvatarContext";
-import { AvatarProps, AvatarImageProps } from "@types";
+import { AvatarProps, AvatarImageProps, AvatarFallbackProps } from "@types";
+import { forwardRef, useState } from "react";
 
 // Avatar component to wrap the image and fallback
-const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
+const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   ({ size = "32", children, ...props }, ref) => {
-    const [imageLoaded, setImageLoaded] = React.useState(false);
+    const [imageLoaded, setImageLoaded] = useState(false);
     const sizeClasses = {
       "32": "h-8 w-8",
       "40": "h-10 w-10",
@@ -31,7 +31,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
 );
 
 // Image component to load the avatar image
-const AvatarImage = React.forwardRef<HTMLImageElement, AvatarImageProps>(
+const AvatarImage = forwardRef<HTMLImageElement, AvatarImageProps>(
   ({ onLoadingStatusChange, ...props }, ref) => {
     const { setImageLoaded } = useAvatarContext();
 
@@ -60,25 +60,24 @@ const AvatarImage = React.forwardRef<HTMLImageElement, AvatarImageProps>(
 );
 
 // Fallback component to show when the image is not loaded
-const AvatarFallback = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
-  const { imageLoaded } = useAvatarContext();
+const AvatarFallback = forwardRef<HTMLDivElement, AvatarFallbackProps>(
+  ({ className, ...props }, ref) => {
+    const { imageLoaded } = useAvatarContext();
 
-  if (imageLoaded) return null;
+    if (imageLoaded) return null;
 
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "bg-muted absolute inset-0 flex h-full w-full items-center justify-center",
-        className,
-      )}
-      {...props}
-    />
-  );
-});
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "bg-muted absolute inset-0 flex h-full w-full items-center justify-center",
+          className,
+        )}
+        {...props}
+      />
+    );
+  },
+);
 
 Avatar.displayName = "Avatar";
 AvatarImage.displayName = "AvatarImage";
