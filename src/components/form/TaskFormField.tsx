@@ -8,7 +8,7 @@ import { Tag } from "../common/Tag";
 import { cn } from "@/lib/utils";
 import { TaskFormFieldProps } from "@types";
 
-export default function TaskFormField({
+export default function TaskFormField<T extends string | number>({
   icon,
   value,
   onValueChange,
@@ -18,11 +18,14 @@ export default function TaskFormField({
   customContent,
   contentClassName,
   renderItem,
-}: TaskFormFieldProps) {
+}: TaskFormFieldProps<T>) {
   return (
     <Tag>
       {icon}
-      <SelectRoot value={value} onValueChange={onValueChange}>
+      <SelectRoot
+        value={value}
+        onValueChange={(val) => onValueChange(val as T)}
+      >
         <SelectTrigger className="" placeholder={placeholder} />
         <SelectContent title={title} className={cn(contentClassName)}>
           {customContent

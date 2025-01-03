@@ -183,10 +183,10 @@ export interface TaskFormData {
   dueDate: string;
 }
 
-export interface TaskFormFieldProps {
+export interface TaskFormFieldProps<T> {
   icon?: React.ReactNode;
-  value: string | number;
-  onValueChange: (value: string | number) => void;
+  value: T;
+  onValueChange: (value: T) => void;
   placeholder: string;
   title?: string;
   contentClassName?: string;
