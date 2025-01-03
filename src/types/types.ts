@@ -184,9 +184,9 @@ export interface TaskFormData {
 }
 
 export interface TaskFormFieldProps {
-  icon: React.ReactNode;
-  value: string;
-  onValueChange: (value: string) => void;
+  icon?: React.ReactNode;
+  value: string | number;
+  onValueChange: (value: string | number) => void;
   placeholder: string;
   title?: string;
   contentClassName?: string;
