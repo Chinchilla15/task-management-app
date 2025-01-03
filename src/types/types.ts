@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { Task } from "@graphql/graphql";
+import type { PointEstimate, Status, Task, TaskTag } from "@graphql/graphql";
 import { tagStyles } from "@/config/tagVariants";
 import { COLUMN_WIDTHS } from "@/config/tableStyles";
 
@@ -160,4 +160,42 @@ export type TagVariant = keyof typeof tagStyles.variants;
 export interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: TagVariant;
   icon?: React.ElementType;
+}
+
+// Input Types
+export interface InputProps {
+  id?: string;
+  placeholder?: string;
+  className?: string;
+  value: string;
+  onChange: (value: string) => void;
+  icon?: boolean;
+  error?: string;
+}
+
+// Form Types
+export interface TaskFormData {
+  status: Status;
+  name: string;
+  pointEstimate: PointEstimate;
+  assignee: string;
+  tags: TaskTag;
+  dueDate: string;
+}
+
+export interface TaskFormFieldProps {
+  icon: React.ReactNode;
+  value: string;
+  onValueChange: (value: string) => void;
+  placeholder: string;
+  title?: string;
+  contentClassName?: string;
+  options?: Array<{ value: string; label: string; icon?: React.ReactNode }>;
+  customContent?: React.ReactNode;
+  renderItem?: (option: { value: string; label: string }) => React.ReactNode;
+}
+
+export interface CustomDatePickerProps {
+  value?: Date;
+  onChange: (date: Date | null) => void;
 }
