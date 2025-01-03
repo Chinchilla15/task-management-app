@@ -2,9 +2,9 @@ import React from "react";
 
 export function useSelectKeyboard(
   isOpen: boolean,
-  options: { value: string }[],
-  // currentValue: string,
-  onSelect: (value: string) => void,
+  options: { value: string | number }[],
+  _currentValue: string | number,
+  onSelect: (value: string | number) => void,
   onClose: () => void,
 ) {
   const [focusedIndex, setFocusedIndex] = React.useState(0);

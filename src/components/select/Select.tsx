@@ -5,21 +5,24 @@ import { useSelectKeyboard } from "@/hooks/useSelectKeyboard";
 
 // WIP: Implement Select component, improve semantics, and accessibility,  add keyboard navigation, improve styling, separate components and context
 interface SelectProps {
-  value: string;
-  onValueChange: (value: string) => void;
+  value: string | number;
+  onValueChange: (value: string | number) => void;
   children: React.ReactNode;
 }
+
+type SelectItemProps = React.HTMLAttributes<HTMLDivElement> & {
+  value: string | number;
+  "data-focused"?: boolean;
+};
 
 interface SelectContextType {
   open: boolean;
   setOpen: (open: boolean) => void;
-  value: string;
-  onValueChange: (value: string) => void;
+  value: string | number;
+  onValueChange: (value: string | number) => void;
 }
 
-const SelectContext = React.createContext<SelectContextType | undefined>(
-  undefined,
-);
+const SelectContext = React.createContext<SelectContextType | null>(null);
 
 export function SelectRoot({ children, value, onValueChange }: SelectProps) {
   const [open, setOpen] = React.useState(false);
@@ -123,36 +126,32 @@ export const SelectContent = React.forwardRef<
   );
 });
 
-export const SelectItem = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
-    value: string;
-    "data-focused"?: boolean;
-  }
->(({ className, children, value, ...props }, ref) => {
-  const context = React.useContext(SelectContext);
-  if (!context) throw new Error("SelectItem must be used within SelectRoot");
+export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
+  ({ className, children, value, ...props }, ref) => {
+    const context = React.useContext(SelectContext);
+    if (!context) throw new Error("SelectItem must be used within SelectRoot");
 
-  return (
-    <div
-      ref={ref}
-      role="option"
-      aria-selected={context.value === value}
-      className={cn(
-        "flex cursor-pointer items-center gap-2 px-4 py-1.5 text-body-m font-normal hover:bg-neutral-4",
-        context.value === value && "bg-neutral-4",
-        props["data-focused"] && "bg-neutral-4",
-        className,
-      )}
-      onClick={() => {
-        context.onValueChange(value);
-        context.setOpen(false);
-      }}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-});
+    return (
+      <div
+        ref={ref}
+        role="option"
+        aria-selected={context.value === value}
+        className={cn(
+          "flex cursor-pointer items-center gap-2 px-4 py-1.5 text-body-m font-normal hover:bg-neutral-4",
+          context.value === value && "bg-neutral-4",
+          props["data-focused"] && "bg-neutral-4",
+          className,
+        )}
+        onClick={() => {
+          context.onValueChange(value);
+          context.setOpen(false);
+        }}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  },
+);
 
 SelectItem.displayName = "SelectItem";
