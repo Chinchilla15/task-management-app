@@ -58,7 +58,7 @@ interface DialogContentProps extends React.HTMLAttributes<HTMLDivElement> {
 export const DialogContent = React.forwardRef<
   HTMLDivElement,
   DialogContentProps
->(({ children, className, ...props }, ref) => {
+>(({ children, className, ...props }) => {
   const context = React.useContext(DialogContext);
   if (!context) throw new Error("DialogContent must be used within Dialog");
   const { open, onOpenChange } = context;
