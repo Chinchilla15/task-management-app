@@ -85,3 +85,55 @@ svg {
 .hide-scrollbar {
   scrollbar-color: transparent transparent;
 }
+.react-datepicker {
+  @apply bg-neutral-5 text-neutral-1;
+}
+
+.react-datepicker__week {
+  @apply grid grid-cols-7 gap-1;
+}
+
+.react-datepicker__day-names {
+  @apply grid grid-cols-7 gap-1 border-t border-neutral-2 py-2;
+}
+
+.react-datepicker__day-name {
+  @apply text-center text-sm font-medium text-neutral-2;
+}
+
+.react-datepicker__day {
+  @apply flex h-8 w-8 cursor-pointer items-center justify-center rounded-sm text-sm;
+}
+
+.react-datepicker__day--selected {
+  @apply border border-primary-4 font-semibold text-neutral-1;
+}
+
+.react-datepicker__day--today {
+  @apply font-bold text-primary-1;
+}
+
+.react-datepicker__day--outside-month {
+  @apply text-neutral-2 opacity-50;
+}
+
+.react-datepicker__month-dropdown,
+.react-datepicker__year-dropdown {
+  @apply mt-1 rounded-md border border-neutral-2 bg-neutral-3;
+}
+
+.react-datepicker__year-option {
+  @apply cursor-pointer text-sm hover:bg-neutral-4;
+}
+
+.react-datepicker__aria-live {
+  position: absolute;
+  clip-path: circle(0);
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  width: 1px;
+  white-space: nowrap;
+}
