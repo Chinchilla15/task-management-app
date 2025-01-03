@@ -3,7 +3,7 @@ import React from "react";
 export function useSelectKeyboard(
   isOpen: boolean,
   options: { value: string }[],
-  currentValue: string,
+  // currentValue: string,
   onSelect: (value: string) => void,
   onClose: () => void,
 ) {

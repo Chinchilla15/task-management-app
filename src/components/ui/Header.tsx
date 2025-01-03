@@ -8,7 +8,7 @@ export default function Header() {
     <header className="p- flex items-center justify-between rounded-2xl bg-neutral-4 px-6 py-3">
       <div className="flex flex-1 items-center">
         <div className="relative w-full">
-          <Input />
+          <Input value="" onChange={() => {}} />
         </div>
       </div>
       <div className="flex items-center gap-4">
