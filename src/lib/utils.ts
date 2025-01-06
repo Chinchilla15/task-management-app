@@ -1,8 +1,9 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { Task } from "@graphql/graphql";
+import { Task, TaskTag } from "@graphql/graphql";
 import { PointEstimate, PointEstimateToNumber } from "@graphql/graphql";
 import { TagName, TagVariant } from "@types";
+import { format } from "date-fns";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -25,6 +26,25 @@ export const getPointEstimateNumber = (point: PointEstimate): number => {
     [PointEstimate.Zero]: 0,
   };
   return mapping[point];
+};
+
+export const getPointEstimateDisplay = (point: PointEstimate): string => {
+  return `${getPointEstimateNumber(point)} Points`;
+};
+
+export const getPointEstimateFromNumber = (number: number): PointEstimate => {
+  switch (number) {
+    case 8:
+      return PointEstimate.Eight;
+    case 4:
+      return PointEstimate.Four;
+    case 2:
+      return PointEstimate.Two;
+    case 1:
+      return PointEstimate.One;
+    default:
+      return PointEstimate.Zero;
+  }
 };
 
 export const formatDate = (date: string): string => {
@@ -52,8 +72,39 @@ export const formatDate = (date: string): string => {
   });
 };
 
+export const dateUtils = {
+  toDisplayFormat: (date: Date | string | null) => {
+    if (!date) return "";
+    const dateObj = typeof date === "string" ? new Date(date) : date;
+    return formatDate(format(dateObj, "MMM d, yyyy"));
+  },
+
+  toAPIFormat: (date: Date | string | null): string => {
+    if (!date) return new Date().toISOString().split("T")[0];
+    const dateObj = typeof date === "string" ? new Date(date) : date;
+    return dateObj.toISOString().split("T")[0];
+  },
+};
+
+export const getTagDisplay = (tag: TaskTag): string => {
+  switch (tag) {
+    case TaskTag.Android:
+      return "ANDROID";
+    case TaskTag.Ios:
+      return "IOS";
+    case TaskTag.NodeJs:
+      return "NODE_JS";
+    case TaskTag.Rails:
+      return "RAILS";
+    case TaskTag.React:
+      return "REACT";
+    default:
+      return tag;
+  }
+};
+
 export const TAG_VARIANT_MAP: Record<TagName, TagVariant> = {
-  IOS: "success",
+  IOS: "neutral",
   ANDROID: "warning",
   RAILS: "error",
   REACT: "info",
@@ -70,3 +121,5 @@ export const formatStatus = (status: string) => {
     .replace(/_/g, " ")
     .replace(/\b\w/g, (char) => char.toUpperCase());
 };
+
+export const getRandomNumber = () => Math.floor(Math.random() * 10) + 1;
