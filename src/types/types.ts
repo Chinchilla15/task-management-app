@@ -2,6 +2,8 @@ import * as React from "react";
 import type { PointEstimate, Status, Task, TaskTag } from "@graphql/graphql";
 import { tagStyles } from "@/config/tagVariants";
 import { COLUMN_WIDTHS } from "@/config/tableStyles";
+import { UseFormReturn } from "react-hook-form";
+import { TaskFormValues } from "./formSchema";
 
 // Navigation Types
 export interface NavItem {
@@ -178,7 +180,7 @@ export interface TaskFormData {
   status: Status;
   name: string;
   pointEstimate: PointEstimate;
-  assignee: string;
+  assignee: string | null;
   tags: TaskTag;
   dueDate: string;
 }
@@ -192,10 +194,103 @@ export interface TaskFormFieldProps<T> {
   contentClassName?: string;
   options?: Array<{ value: string; label: string; icon?: React.ReactNode }>;
   customContent?: React.ReactNode;
-  renderItem?: (option: { value: string; label: string }) => React.ReactNode;
+  renderItem?: (option: {
+    value: string;
+    label: string;
+    avatar?: string;
+    id?: string;
+    fullName?: string;
+  }) => React.ReactNode;
 }
 
 export interface CustomDatePickerProps {
   value?: Date;
   onChange: (date: Date | null) => void;
+}
+
+// Dialog Types
+
+// Dialog Primitive Types
+
+export interface DialogContextType {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+export interface DialogRootProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  children: React.ReactNode;
+}
+
+export interface DialogTriggerProps {
+  asChild?: boolean;
+  children: React.ReactNode;
+}
+
+export interface DialogContentProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
+
+// Form Fields
+export interface DialogFormFieldsProps {
+  form: UseFormReturn<TaskFormValues>;
+  date: Date;
+  setDate: (date: Date) => void;
+  pointEstimateOptions: Array<{ value: string; label: string }>;
+  assigneeOptions: Array<{ value: string; label: string; avatar?: string }>;
+  tagOptions: Array<{ value: string; label: string }>;
+}
+
+// Dialog Input
+export interface DialogInputProps {
+  form: UseFormReturn<TaskFormValues>;
+}
+
+// Dialog Footer
+export interface TaskDialogFooterProps {
+  isSubmitting: boolean;
+  onCancel: () => void;
+  submitLabel?: string;
+}
+
+// Dialog Form Config
+
+export interface TaskFormConfig {
+  defaultValues?: {
+    name?: string;
+    // id: string;
+    pointEstimate?: PointEstimate;
+    assigneeId?: string | null;
+    status?: Status;
+    dueDate?: Date;
+    tags?: TaskTag[];
+  };
+}
+
+//Delete Dialog
+
+export interface DeleteDialogProps {
+  taskId: string;
+  showDeleteDialog: boolean;
+  setShowDeleteDialog: (show: boolean) => void;
+}
+
+//Edit Dialog
+
+export interface EditTaskDialogProps {
+  task: Task;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
+
+//Base Dialog
+
+export interface TaskDialogBaseProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onSubmit: (data: TaskFormValues) => Promise<void>;
+  defaultValues?: Partial<Task>;
+  submitLabel?: string;
 }
