@@ -2,7 +2,7 @@ import { Button } from "@components/common/Button";
 import Grid from "@icons/Grid.svg?react";
 import MenuBars from "@icons/MenuBars.svg?react";
 import type { TaskViewControlsProps } from "@types";
-import { NativeTaskDialog } from "../dialog/TaskDialog";
+import { CreateTaskDialog } from "../dialog/CreateTaskDialog";
 
 export function TaskViewControls({
   viewType,
@@ -28,7 +28,7 @@ export function TaskViewControls({
           <Grid width="18px" height="16px" aria-label="Grid View" />
         </Button>
       </div>
-      <NativeTaskDialog />
+      <CreateTaskDialog />
     </div>
   );
 }
