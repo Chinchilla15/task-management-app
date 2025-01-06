@@ -56,6 +56,7 @@ export const SelectTrigger = React.forwardRef<
       {...props}
     >
       <p className="flex items-center gap-2 text-body-m">
+        {icon && <span className="flex items-center">{icon}</span>}
         {context.value || placeholder}
       </p>
     </button>
