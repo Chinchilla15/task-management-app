@@ -11,7 +11,7 @@ export default function Input({
   onChange,
   icon = true,
 }: InputProps) {
-  const handleClear = () => onChange("");
+  const handleClear = () => onChange?.("");
 
   return (
     <div className="relative flex items-center gap-6">
@@ -24,7 +24,7 @@ export default function Input({
         type="text"
         id={id}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onChange?.(e.target.value)}
         className={`bg-neutral-4 text-body-m text-neutral-2 focus:outline-none focus:ring-0 ${className}`}
         placeholder={placeholder}
       />
