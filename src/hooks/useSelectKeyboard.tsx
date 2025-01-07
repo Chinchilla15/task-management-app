@@ -8,7 +8,7 @@ export function useSelectKeyboard(
   onClose: () => void,
 ) {
   const [focusedIndex, setFocusedIndex] = React.useState(0);
-  const listRef = React.useRef<HTMLDivElement>(null);
+  const listRef = React.useRef<HTMLUListElement>(null);
 
   React.useEffect(() => {
     if (!isOpen) return;
