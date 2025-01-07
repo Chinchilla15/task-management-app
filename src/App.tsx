@@ -1,14 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router";
-import DashBoardLayout from "@components/layouts/DashBoardLayout";
+import { RouterProvider } from "react-router";
+import { router } from "./routes/router";
 
 function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<DashBoardLayout />} />
-      </Routes>
-    </Router>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
