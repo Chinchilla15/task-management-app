@@ -6,7 +6,7 @@ export default function TaskColumn({
   children,
 }: TaskColumnProps) {
   return (
-    <div className="min-w-[300px] flex-1">
+    <div className="w-full min-w-[280px] max-w-[400px]">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-body-l text-xl font-semibold text-neutral-1">
           {title}

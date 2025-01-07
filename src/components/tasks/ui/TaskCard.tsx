@@ -23,16 +23,17 @@ import {
 import { useState } from "react";
 import DeleteTaskDialog from "@/components/dialog/DeleteTaskDialog";
 import EditTaskDialog from "@/components/dialog/EditTaskDialog";
+import { useTaskDialog } from "@/hooks/useTaskDialog";
 
 export default function TaskCard({ task }: TaskCardProps) {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  const [showEditDialog, setShowEditDialog] = useState(false);
+  const { openEditDialog, editingTaskId, closeEditDialog } = useTaskDialog();
 
   const handleAction = async (value: string | number) => {
     if (value === "delete") {
       setShowDeleteDialog(true);
     } else if (value === "edit") {
-      setShowEditDialog(true);
+      openEditDialog(task.id);
     }
   };
 
@@ -113,8 +114,8 @@ export default function TaskCard({ task }: TaskCardProps) {
       />
 
       <EditTaskDialog
-        open={showEditDialog}
-        setOpen={setShowEditDialog}
+        open={editingTaskId === task.id}
+        setOpen={() => closeEditDialog()}
         task={task}
       />
     </>

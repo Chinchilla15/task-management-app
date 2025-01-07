@@ -9,8 +9,13 @@ import type { TaskListProps } from "@types";
 import Arrow from "@icons/DropDown.svg?react";
 import { COLUMN_WIDTHS, tableCellStyles } from "@/config/tableStyles";
 import ListSkeleton from "../ui/ListSkeleton";
+import NoSearchResults from "@/components/errors/NoSearchResults";
 
-export default function TaskListView({ tasks, loading }: TaskListProps) {
+export default function TaskListView({
+  tasks,
+  loading,
+  searchQuery,
+}: TaskListProps) {
   const groupedTasks = groupTasksByStatus(tasks);
 
   if (loading) {
@@ -18,8 +23,10 @@ export default function TaskListView({ tasks, loading }: TaskListProps) {
   }
 
   if (!tasks.length) {
-    return (
-      <div className="flex h-[calc(100vh-200px)] items-center justify-center">
+    return searchQuery ? (
+      <NoSearchResults query={searchQuery} />
+    ) : (
+      <div className="flex h-full items-center justify-center">
         <p className="text-body-l text-neutral-1">
           No tasks at the moment, you can rest for now
         </p>

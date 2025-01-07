@@ -3,8 +3,13 @@ import TaskCard from "../ui/TaskCard";
 import CardSkeleton from "../ui/CardSkeleton";
 import type { TaskGridProps } from "@types";
 import { groupTasksByStatus, formatStatus } from "@/lib/utils";
+import NoSearchResults from "@/components/errors/NoSearchResults";
 
-export default function TaskGridView({ tasks, loading }: TaskGridProps) {
+export default function TaskGridView({
+  tasks,
+  loading,
+  searchQuery,
+}: TaskGridProps) {
   const groupedTasks = groupTasksByStatus(tasks);
 
   if (loading) {
@@ -12,8 +17,10 @@ export default function TaskGridView({ tasks, loading }: TaskGridProps) {
   }
 
   if (!tasks.length) {
-    return (
-      <div className="flex h-[calc(100vh-200px)] items-center justify-center">
+    return searchQuery ? (
+      <NoSearchResults query={searchQuery} />
+    ) : (
+      <div className="flex h-full items-center justify-center">
         <p className="text-body-l text-neutral-1">
           No tasks at the moment, you can rest for now
         </p>
