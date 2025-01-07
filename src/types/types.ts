@@ -10,6 +10,7 @@ export interface NavItem {
   id: string;
   label: string;
   icon: React.ElementType;
+  path: string;
 }
 
 export interface NavLinkProps {
@@ -81,7 +82,7 @@ export interface TableBodyProps
 // Task Types
 export type TaskStatus = "Working" | "In Progress" | "Completed";
 
-export type ViewType = "list" | "grid";
+export type ViewType = "list" | "grid" | undefined;
 
 export type TaskAction =
   | { type: "view"; id: string }
@@ -129,8 +130,14 @@ export interface TaskContainerProps {
   onTaskAction?: (action: TaskAction) => void;
 }
 
-export type TaskListProps = TaskContainerProps & { loading?: boolean };
-export type TaskGridProps = TaskContainerProps & { loading?: boolean };
+export type TaskListProps = TaskContainerProps & {
+  loading?: boolean;
+  searchQuery: string;
+};
+export type TaskGridProps = TaskContainerProps & {
+  loading?: boolean;
+  searchQuery: string;
+};
 export type TaskTableProps = TaskContainerProps;
 
 export interface TaskRowProps {
@@ -165,14 +172,16 @@ export interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 // Input Types
-export interface InputProps {
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   placeholder?: string;
   className?: string;
-  value: string;
-  onChange: (value: string) => void;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement> | string) => void;
   icon?: boolean;
   error?: string;
+  debounceDelay?: number;
 }
 
 // Form Types
