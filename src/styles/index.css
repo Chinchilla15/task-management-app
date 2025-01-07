@@ -82,6 +82,10 @@ svg {
   fill: currentColor;
 }
 
+body {
+  overscroll-behavior: none;
+}
+
 .hide-scrollbar {
   scrollbar-color: transparent transparent;
 }

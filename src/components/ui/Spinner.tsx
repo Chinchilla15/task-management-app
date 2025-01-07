@@ -4,7 +4,7 @@ const sizes = {
   xs: "h-3 w-3",
   sm: "h-4 w-4",
   md: "h-8 w-8",
-  lg: "h-16 w-16",
+  lg: "h-10 w-10",
   xl: "h-24 w-24",
 };
 
