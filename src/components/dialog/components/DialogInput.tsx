@@ -14,7 +14,12 @@ export const DialogInput = ({ form }: DialogInputProps) => {
         id="title"
         placeholder="Task Title"
         value={watch("name") || ""}
-        onChange={(value) => setValue("name", value)}
+        onChange={(value) =>
+          setValue(
+            "name",
+            typeof value === "string" ? value : value.target.value,
+          )
+        }
         className="bg-transparent text-body-xl font-bold text-white"
         icon={false}
         error={errors.name?.message}
