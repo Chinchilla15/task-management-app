@@ -59,6 +59,7 @@ export default function DeleteTaskDialog({
           <Button
             variant="transparent-white"
             onClick={() => setShowDeleteDialog(false)}
+            noAnimation
           >
             Cancel
           </Button>

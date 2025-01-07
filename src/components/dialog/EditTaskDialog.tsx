@@ -19,6 +19,7 @@ export default function EditTaskDialog({
         },
       },
     });
+    setOpen(false);
   };
 
   return (

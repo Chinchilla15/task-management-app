@@ -25,7 +25,7 @@ export const DialogFormFields = ({
   tagOptions,
 }: DialogFormFieldsProps) => {
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between gap-2">
       <FormField
         icon={<PlusMinus width="24px" height="24px" aria-label="" />}
         value={
