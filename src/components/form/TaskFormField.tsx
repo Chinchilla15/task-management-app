@@ -3,7 +3,7 @@ import {
   SelectItem,
   SelectRoot,
   SelectTrigger,
-} from "../select/Select";
+} from "../select/index";
 import { Tag } from "../common/Tag";
 import { cn } from "@/lib/utils";
 import { TaskFormFieldProps } from "@types";

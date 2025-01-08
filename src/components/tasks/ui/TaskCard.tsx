@@ -19,7 +19,7 @@ import {
   SelectContent,
   SelectTrigger,
   SelectRoot,
-} from "@/components/select";
+} from "@/components/select/index";
 import { useState } from "react";
 import DeleteTaskDialog from "@/components/dialog/DeleteTaskDialog";
 import EditTaskDialog from "@/components/dialog/EditTaskDialog";
