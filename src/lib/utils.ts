@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { Task, TaskTag } from "@graphql/graphql";
 import { PointEstimate, PointEstimateToNumber } from "@graphql/graphql";
 import { TagName, TagVariant } from "@types";
-import { format } from "date-fns";
+import { addDays, format, isAfter, isBefore, isToday } from "date-fns";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -136,5 +136,16 @@ export const getTimeOfDayGreeting = () => {
     return "Good evening";
   } else {
     return "Good night";
+  }
+};
+export const getDueDateStatusClass = (dueDate: Date) => {
+  const today = new Date();
+
+  if (isToday(dueDate) || isBefore(dueDate, today)) {
+    return "bg-primary-4";
+  } else if (isAfter(dueDate, today) && isBefore(dueDate, addDays(today, 3))) {
+    return "bg-tertiary-4";
+  } else {
+    return "bg-secondary-4";
   }
 };

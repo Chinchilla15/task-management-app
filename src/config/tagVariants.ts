@@ -1,5 +1,5 @@
 const tagStyles = {
-  base: "rounded-[4px] flex py-1 px-4 justify-center items-center gap-2 font-semibold text-body-m",
+  base: "rounded-[4px] flex py-1 px-4 justify-start items-center gap-2 font-semibold text-body-m",
   variants: {
     success: "bg-opacity-10 bg-green-500 text-secondary-4",
     error: "bg-opacity-10 bg-red-500 text-primary-4",
@@ -11,6 +11,7 @@ const tagStyles = {
     warningOutline: "border border-yellow-500 text-tertiary-4",
     infoOutline: "border border-blue-500 text-blue-500",
     neutralOutline: "border border-neutral-500 text-neutral-1",
+    none: "bg-opacity-0 text-neutral-1",
   },
 } as const;
 
