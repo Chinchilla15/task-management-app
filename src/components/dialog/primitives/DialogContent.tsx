@@ -23,6 +23,9 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
         previousFocus.current.focus();
         document.body.style.overflow = "";
       }
+      return () => {
+        document.body.style.overflow = "";
+      };
     }, [open]);
 
     if (!open) return null;
@@ -30,10 +33,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     return createPortal(
       <div className="fixed inset-0 z-50" role="presentation">
         <div
-          className={cn(
-            "fixed inset-0 backdrop-blur-sm",
-            "animate-in fade-in-0",
-          )}
+          className={cn("fixed inset-0 backdrop-blur-sm")}
           onClick={handleBackdropClick}
           aria-hidden="true"
         />
@@ -44,8 +44,8 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
           aria-labelledby="dialog-title"
           aria-describedby="dialog-description"
           className={cn(
-            "fixed left-[50%] top-[50%] z-50 flex w-full max-w-xl translate-x-[-50%] translate-y-[-50%] gap-4",
-            "animate-in fade-in-0 zoom-in-95 slide-in-from-left-1/2 slide-in-from-top-[48%] rounded-lg bg-neutral-3 p-4 shadow-lg duration-200",
+            "fixed left-1/2 top-1/2 z-50 flex w-11/12 max-w-xl translate-x-[-50%] translate-y-[-50%] gap-4",
+            "rounded-lg bg-neutral-3 p-4 shadow-lg",
             className,
           )}
           onClick={(e) => e.stopPropagation()}
