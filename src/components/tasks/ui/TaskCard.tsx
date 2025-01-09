@@ -41,7 +41,7 @@ export default function TaskCard({ task }: TaskCardProps) {
   const date = formatDate(task.dueDate);
   return (
     <>
-      <div className="mb-4 rounded-lg bg-neutral-4 text-neutral-1">
+      <article className="mb-4 rounded-lg bg-neutral-4 text-neutral-1">
         <div className="flex flex-row items-center justify-between space-y-0 p-4">
           <div className="text-lg font-semibold">{task.name}</div>
           <SelectRoot value={""} onValueChange={handleAction}>
@@ -129,7 +129,7 @@ export default function TaskCard({ task }: TaskCardProps) {
             </div>
           </div>
         </div>
-      </div>
+      </article>
       <DeleteTaskDialog
         showDeleteDialog={showDeleteDialog}
         setShowDeleteDialog={setShowDeleteDialog}
