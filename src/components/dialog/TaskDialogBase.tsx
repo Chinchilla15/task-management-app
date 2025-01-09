@@ -18,9 +18,6 @@ export const TaskDialogBase = ({
   defaultValues,
   submitLabel,
 }: TaskDialogBaseProps) => {
-  const [date, setDate] = useState<Date>(
-    defaultValues?.dueDate ? new Date(defaultValues.dueDate) : new Date(),
-  );
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { data: usersData } = useGetUsersQuery();
@@ -30,7 +27,6 @@ export const TaskDialogBase = ({
       ? {
           ...defaultValues,
           assigneeId: defaultValues.assignee?.id ?? "",
-          // id: defaultValues.id ?? "",
         }
       : undefined,
   });
@@ -66,8 +62,6 @@ export const TaskDialogBase = ({
               <DialogInput form={form} />
               <DialogFormFields
                 form={form}
-                date={date}
-                setDate={setDate}
                 pointEstimateOptions={pointEstimateOptions}
                 assigneeOptions={assigneeOptions}
                 tagOptions={tagOptions}

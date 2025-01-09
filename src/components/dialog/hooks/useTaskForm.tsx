@@ -9,10 +9,9 @@ export const useTaskForm = (config?: TaskFormConfig) => {
   const form = useForm<TaskFormValues>({
     resolver: zodResolver(taskFormSchema),
     defaultValues: {
-      // id: config?.defaultValues?.id ?? "",
       name: config?.defaultValues?.name ?? "",
       pointEstimate: config?.defaultValues?.pointEstimate ?? undefined,
-      assigneeId: config?.defaultValues?.assigneeId ?? null,
+      assigneeId: config?.defaultValues?.assigneeId ?? "",
       status: config?.defaultValues?.status ?? Status.InProgress,
       dueDate: config?.defaultValues?.dueDate
         ? dateUtils.toAPIFormat(config.defaultValues.dueDate)
