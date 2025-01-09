@@ -6,7 +6,7 @@ export default function TaskColumn({
   children,
 }: TaskColumnProps) {
   return (
-    <div className="w-full min-w-[280px] max-w-[400px]">
+    <section className="w-full min-w-[340px] max-w-[348px]">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-body-l text-xl font-semibold text-neutral-1">
           {title}
@@ -16,6 +16,6 @@ export default function TaskColumn({
       <div className="h-[calc(100vh-270px)] overflow-y-auto">
         <div className="space-y-4">{children}</div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -75,11 +75,34 @@ export default function TaskCard({ task }: TaskCardProps) {
             </div>
           </div>
           <div className="mb-4 flex items-center gap-2">
-            {task.tags.map((tag) => (
-              <Tag key={tag} variant={getTagVariant(tag)}>
-                {tag.toUpperCase()}
+            <div className="flex gap-2">
+              {task.tags.slice(0, 2).map((tag) => (
+                <Tag key={tag} variant={getTagVariant(tag)}>
+                  {tag}
+                </Tag>
+              ))}
+            </div>
+            {task.tags.length > 2 && (
+              <Tag className="p-0">
+                <SelectRoot value={""} onValueChange={() => {}}>
+                  <SelectTrigger
+                    className="cursor-pointer px-3 py-1 transition-all duration-300 ease-out hover:bg-neutral-2"
+                    placeholder={` +${task.tags.length - 2} `}
+                  />
+                  <SelectContent className="mt-2 -translate-x-14 transform">
+                    {task.tags.slice(2).map((tag) => (
+                      <SelectItem
+                        className="pointer-events-none cursor-default bg-transparent px-2 py-1 hover:bg-transparent"
+                        key={tag}
+                        value={tag}
+                      >
+                        <Tag variant={getTagVariant(tag)}>{tag}</Tag>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </SelectRoot>
               </Tag>
-            ))}
+            )}
           </div>
           <div className="flex items-center justify-between">
             <Avatar>
