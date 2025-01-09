@@ -5,6 +5,7 @@ type ContextType = {
   viewType: ViewType;
   setViewType: (viewType: ViewType) => void;
   searchQuery: string;
+  setSearchQuery: (searchQuery: string) => void;
 };
 
 export function useLayout() {
