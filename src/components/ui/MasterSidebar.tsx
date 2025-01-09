@@ -2,8 +2,15 @@ import Logo from "@icons/Logo.svg?react";
 import SidebarNavLink from "@components/common/NavLink";
 import { navItems } from "@/config/sidebarNavigation";
 import { useLocation } from "react-router";
+import { cn } from "@lib/utils";
 
-export default function MasterSidebar() {
+export default function MasterSidebar({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) {
   const location = useLocation();
 
   const getSelectedItem = (pathname: string) => {
@@ -18,7 +25,13 @@ export default function MasterSidebar() {
 
   return (
     <aside
-      className="w-64 rounded-3xl bg-neutral-4"
+      className={cn(
+        "fixed inset-y-0 left-0 z-50 w-64 transform rounded-3xl bg-neutral-4 transition-transform duration-300 md:relative md:translate-x-0",
+        {
+          "translate-x-0": isOpen,
+          "-translate-x-full": !isOpen,
+        },
+      )}
       aria-label="Main navigation"
     >
       <div className="flex h-full flex-col py-3 pl-4">
@@ -32,7 +45,7 @@ export default function MasterSidebar() {
                 key={item.id}
                 item={item}
                 isSelected={selectedId === item.id}
-                onSelect={() => {}}
+                onSelect={() => onClose()}
               />
             ))}
           </ul>

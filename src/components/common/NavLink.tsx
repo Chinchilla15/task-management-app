@@ -2,11 +2,16 @@ import { cn } from "@/lib/utils";
 import type { NavLinkProps } from "@types";
 import { NavLink, useLocation } from "react-router";
 
-export default function SidebarNavLink({ item, isSelected }: NavLinkProps) {
+export default function SidebarNavLink({
+  item,
+  isSelected,
+  onSelect,
+}: NavLinkProps) {
   const location = useLocation();
   const Icon = item.icon;
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    onSelect(item.id);
     if (item.path === location.pathname) {
       e.preventDefault();
       return;
