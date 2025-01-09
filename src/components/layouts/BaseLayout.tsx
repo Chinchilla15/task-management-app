@@ -1,27 +1,37 @@
 import { useState } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import MasterSidebar from "@components/ui/MasterSidebar";
 import { cn } from "@lib/utils";
 import Plus from "@icons/white/Plus.svg?react";
 
 import type { ViewType } from "@types";
 import { Button } from "@components/common/Button";
+import Header from "../ui/Header";
+import { paths } from "@/config/paths";
 
 export default function BaseLayout() {
   const [viewType, setViewType] = useState<ViewType>("grid");
   const [searchQuery, setSearchQuery] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const location = useLocation();
 
   const handleOnClose = () => {
     setIsSidebarOpen(false);
     setSearchQuery("");
   };
 
+  const shouldShowHeader = ![paths.profile].includes(
+    location.pathname as "/profile",
+  );
+
   return (
     <div className="min-h-screen bg-neutral-5">
       <div className="grid h-screen grid-cols-1 p-4 sm:gap-8 md:grid-cols-[auto_1fr] md:p-8">
         <MasterSidebar isOpen={isSidebarOpen} onClose={handleOnClose} />
         <div className="flex flex-1 flex-col overflow-hidden">
+          {shouldShowHeader && (
+            <Header searchQuery={searchQuery} onSearch={setSearchQuery} />
+          )}
           <Button
             variant="primary"
             className={cn(

@@ -2,7 +2,7 @@ import Bell from "@icons/Bell.svg?react";
 import { Button } from "@/components/common/Button";
 import Input from "@/components/common/Input";
 import { Avatar, AvatarFallback, AvatarImage } from "../common/Avatar";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { useDebounce } from "@/hooks/useDebounce";
 import {
   SelectContent,
@@ -14,14 +14,20 @@ import { Link } from "react-router";
 
 export default function Header({
   onSearch,
+  searchQuery,
 }: {
   onSearch: (query: string) => void;
+  searchQuery: string;
 }) {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState(searchQuery);
 
   const debouncedSearch = useDebounce((value: string) => {
     onSearch(value);
   }, 300);
+
+  useEffect(() => {
+    setSearchValue(searchQuery);
+  }, [searchQuery]);
 
   const handleSearch = (value: string) => {
     setSearchValue(value);

@@ -3,10 +3,9 @@ import { useGetTasksQuery } from "@graphql/graphql";
 import { useLayout } from "@/hooks/useLayout";
 import { TaskViewControls } from "@/components/common/TaskViewControls";
 import { useUserProfile } from "@/hooks/useUserProfile";
-import Header from "@/components/ui/Header";
 
 export default function MyTask() {
-  const { viewType, searchQuery, setViewType, setSearchQuery } = useLayout();
+  const { viewType, searchQuery, setViewType } = useLayout();
   const { currentUser } = useUserProfile();
   const { data, loading } = useGetTasksQuery({
     variables: {
@@ -22,7 +21,6 @@ export default function MyTask() {
 
   return (
     <>
-      <Header onSearch={setSearchQuery} />
       <TaskViewControls viewType={viewType} onViewChange={setViewType} />
       <Task.Provider viewType={viewType}>
         {viewType === "list" ? (
