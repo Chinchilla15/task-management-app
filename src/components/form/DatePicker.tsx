@@ -10,7 +10,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
 }) => {
   return (
     <DatePicker
-      selected={value}
+      selected={typeof value === "string" ? new Date(value) : value}
       onChange={onChange}
       className={cn(
         "w-full cursor-pointer bg-transparent",
@@ -23,7 +23,9 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
           "rounded-md hover:bg-primary-4 mx-0.5 p-2 ",
           date.toDateString() === new Date().toDateString() &&
             "text-primary-1 font-bold",
-          date.toDateString() === value?.toDateString() && "bg-neutral-4",
+          date.toDateString() ===
+            (value instanceof Date ? value.toDateString() : "") &&
+            "bg-neutral-4",
         )
       }
       dateFormat="MMMM d, yyyy"
