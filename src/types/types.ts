@@ -141,6 +141,7 @@ export type TaskGridProps = TaskContainerProps & {
 export type TaskTableProps = TaskContainerProps;
 
 export interface TaskRowProps {
+  index: number;
   task: Task;
   onAction?: (action: TaskAction) => void;
 }
@@ -195,6 +196,7 @@ export interface TaskFormData {
 }
 
 export interface TaskFormFieldProps<T> {
+  tagVariant?: TagVariant;
   icon?: React.ReactNode;
   value: T;
   onValueChange: (value: T) => void;
@@ -213,7 +215,7 @@ export interface TaskFormFieldProps<T> {
 }
 
 export interface CustomDatePickerProps {
-  value?: Date;
+  value?: string | Date;
   onChange: (date: Date | null) => void;
 }
 
@@ -245,8 +247,6 @@ export interface DialogContentProps
 // Form Fields
 export interface DialogFormFieldsProps {
   form: UseFormReturn<TaskFormValues>;
-  date: Date;
-  setDate: (date: Date) => void;
   pointEstimateOptions: Array<{ value: string; label: string }>;
   assigneeOptions: Array<{ value: string; label: string; avatar?: string }>;
   tagOptions: Array<{ value: string; label: string }>;
@@ -303,3 +303,44 @@ export interface TaskDialogBaseProps {
   defaultValues?: Partial<Task>;
   submitLabel?: string;
 }
+
+// Select Types
+
+//Dialog Primitive Types
+export interface SelectProps {
+  value: string | number;
+  onValueChange: (value: string | number) => void;
+  children: React.ReactNode;
+  id?: string;
+  name?: string;
+  disabled?: boolean;
+}
+
+// Select Context
+export interface SelectContextType {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  value: string | number;
+  onValueChange: (value: string | number) => void;
+  listId: string;
+  triggerId: string;
+  disabled?: boolean;
+}
+
+// Select Trigger
+
+export type SelectTriggerProps =
+  React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    placeholder?: string;
+    icon?: React.ReactNode;
+  };
+
+// Select Content
+export type SelectContentProps = React.HTMLAttributes<HTMLDivElement> & {
+  title?: string;
+};
+
+// Select Item
+export type SelectItemProps = React.LiHTMLAttributes<HTMLLIElement> & {
+  value: string | number;
+};
