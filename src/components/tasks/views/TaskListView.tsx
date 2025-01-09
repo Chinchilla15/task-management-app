@@ -75,8 +75,8 @@ export default function TaskListView({
             </tr>
           </TableHeader>
           <TableBody>
-            {statusTasks.map((task) => (
-              <TaskRow key={task.id} task={task} />
+            {statusTasks.map((task, index) => (
+              <TaskRow key={task.id} index={index} task={task} />
             ))}
           </TableBody>
         </Table>
