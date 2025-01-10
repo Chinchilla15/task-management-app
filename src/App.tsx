@@ -1,8 +1,24 @@
 import { RouterProvider } from "react-router";
 import { router } from "./routes/router";
+import { DragDropContext, DropResult } from "@hello-pangea/dnd";
+import { useCallback } from "react";
+import { useTaskDrag } from "./components/tasks/hooks/useTaskDrag";
 
 function App() {
-  return <RouterProvider router={router} />;
+  const { handleDragEnd } = useTaskDrag();
+  const onDragEnd = useCallback((result: DropResult) => {
+    handleDragEnd(result);
+  }, []);
+  return (
+    <DragDropContext
+      autoScrollerOptions={{
+        ease: (value: number) => value,
+      }}
+      onDragEnd={onDragEnd}
+    >
+      <RouterProvider router={router} />
+    </DragDropContext>
+  );
 }
 
 export default App;

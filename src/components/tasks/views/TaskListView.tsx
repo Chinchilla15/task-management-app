@@ -10,6 +10,7 @@ import Arrow from "@icons/DropDown.svg?react";
 import { COLUMN_WIDTHS, tableCellStyles } from "@/config/tableStyles";
 import ListSkeleton from "../ui/ListSkeleton";
 import NoSearchResults from "@/components/errors/NoSearchResults";
+import { Droppable } from "@hello-pangea/dnd";
 
 export default function TaskListView({
   tasks,
@@ -35,7 +36,7 @@ export default function TaskListView({
   }
 
   return (
-    <div className="flex w-full flex-col gap-4">
+    <div className="flex w-fit flex-col gap-4 sm:w-auto md:w-fit xl:w-auto">
       <Table status="neutral" className="pointer-events-none">
         <TableHeader>
           <tr className="border border-neutral-3">
@@ -57,30 +58,43 @@ export default function TaskListView({
           </tr>
         </TableHeader>
       </Table>
-      {Object.entries(groupedTasks).map(([status, statusTasks]) => (
-        <Table key={status} status={status}>
-          <TableHeader>
-            <tr className="border border-neutral-3">
-              <td colSpan={5} className="p-4">
-                <div className="flex items-center gap-4">
-                  <Arrow />
-                  <h2 className="flex items-center text-body-l font-semibold text-neutral-1">
-                    {formatStatus(status)}
-                    <span className="ml-2 text-neutral-2">
-                      ({statusTasks.length})
-                    </span>
-                  </h2>
-                </div>
-              </td>
-            </tr>
-          </TableHeader>
-          <TableBody>
-            {statusTasks.map((task, index) => (
-              <TaskRow key={task.id} index={index} task={task} />
-            ))}
-          </TableBody>
-        </Table>
-      ))}
+      {Object.entries(groupedTasks).map(([status, statusTasks]) => {
+        const droppableId = `status-${formatStatus(status)}`;
+        return (
+          <Droppable key={status} droppableId={droppableId}>
+            {(provided) => (
+              <Table
+                key={status}
+                status={status}
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                <TableHeader>
+                  <tr className="border border-neutral-3">
+                    <td colSpan={5} className="p-4">
+                      <div className="flex items-center gap-4">
+                        <Arrow />
+                        <h2 className="flex items-center text-body-l font-semibold text-neutral-1">
+                          {formatStatus(status)}
+                          <span className="ml-2 text-neutral-2">
+                            ({statusTasks.length})
+                          </span>
+                        </h2>
+                      </div>
+                    </td>
+                  </tr>
+                </TableHeader>
+                <TableBody>
+                  {statusTasks.map((task, index) => (
+                    <TaskRow key={task.id} index={index} task={task} />
+                  ))}
+                </TableBody>
+                {provided.placeholder}
+              </Table>
+            )}
+          </Droppable>
+        );
+      })}
     </div>
   );
 }
