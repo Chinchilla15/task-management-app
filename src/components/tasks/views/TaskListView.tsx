@@ -16,6 +16,7 @@ export default function TaskListView({
   tasks,
   loading,
   searchQuery,
+  error,
 }: TaskListProps) {
   const groupedTasks = groupTasksByStatus(tasks);
 
@@ -33,6 +34,10 @@ export default function TaskListView({
         </p>
       </div>
     );
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
   }
 
   return (

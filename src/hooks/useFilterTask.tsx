@@ -9,7 +9,7 @@ export const useFilterTask = (assigneeId?: string) => {
     name: searchQuery || undefined,
   };
 
-  const { data, loading } = useGetTasksQuery({
+  const { data, loading, error } = useGetTasksQuery({
     variables: { input: filterInput },
     skip: !filterInput,
   });
@@ -17,5 +17,6 @@ export const useFilterTask = (assigneeId?: string) => {
   return {
     tasks: data?.tasks || [],
     loading,
+    error,
   };
 };
