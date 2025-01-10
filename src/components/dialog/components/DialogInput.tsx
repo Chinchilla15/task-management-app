@@ -23,7 +23,7 @@ export const DialogInput = ({ form }: DialogInputProps) => {
             clearErrors("name");
           }
         }}
-        className="bg-transparent text-body-xl font-bold text-white"
+        className="flex-1 bg-transparent text-body-xl font-bold text-white"
         icon={false}
         error={errors.name?.message}
       />

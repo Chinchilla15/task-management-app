@@ -17,7 +17,7 @@ export const CreateTaskDialog = () => {
           ...data,
           assigneeId: data.assigneeId || null,
           tags: data.tags || [],
-          status: Status.InProgress,
+          status: Status.Backlog,
         },
       },
     });
