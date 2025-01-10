@@ -3,17 +3,21 @@ import { Outlet, useLocation } from "react-router";
 import MasterSidebar from "@components/ui/MasterSidebar";
 import { cn } from "@lib/utils";
 import Plus from "@icons/white/Plus.svg?react";
-
 import type { ViewType } from "@types";
 import { Button } from "@components/common/Button";
 import Header from "../ui/Header";
 import { paths } from "@/config/paths";
+import { useDebounce } from "@/hooks/useDebounce";
 
 export default function BaseLayout() {
   const [viewType, setViewType] = useState<ViewType>("grid");
   const [searchQuery, setSearchQuery] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
+
+  const debouncedSetSearchQuery = useDebounce((query: string) => {
+    setSearchQuery(query);
+  }, 300);
 
   const handleOnClose = () => {
     setIsSidebarOpen(false);
@@ -30,7 +34,10 @@ export default function BaseLayout() {
         <MasterSidebar isOpen={isSidebarOpen} onClose={handleOnClose} />
         <div className="flex flex-1 flex-col overflow-hidden">
           {shouldShowHeader && (
-            <Header searchQuery={searchQuery} onSearch={setSearchQuery} />
+            <Header
+              searchQuery={searchQuery}
+              onSearch={debouncedSetSearchQuery}
+            />
           )}
           <Button
             variant="primary"
@@ -55,7 +62,7 @@ export default function BaseLayout() {
                 viewType,
                 searchQuery,
                 setViewType,
-                setSearchQuery,
+                setSearchQuery: debouncedSetSearchQuery,
               }}
             />
           </main>

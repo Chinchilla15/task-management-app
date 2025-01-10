@@ -132,11 +132,11 @@ export interface TaskContainerProps {
 
 export type TaskListProps = TaskContainerProps & {
   loading?: boolean;
-  searchQuery: string;
+  searchQuery?: string;
 };
 export type TaskGridProps = TaskContainerProps & {
   loading?: boolean;
-  searchQuery: string;
+  searchQuery?: string;
 };
 export type TaskTableProps = TaskContainerProps;
 
