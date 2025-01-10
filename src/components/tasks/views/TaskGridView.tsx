@@ -4,6 +4,8 @@ import CardSkeleton from "../ui/CardSkeleton";
 import type { TaskGridProps } from "@types";
 import { groupTasksByStatus, formatStatus } from "@/lib/utils";
 import NoSearchResults from "@/components/errors/NoSearchResults";
+import { Status } from "@/graphql/graphql";
+import CardPlaceholder from "../ui/CardPlaceholder";
 
 export default function TaskGridView({
   tasks,
@@ -11,6 +13,14 @@ export default function TaskGridView({
   searchQuery,
 }: TaskGridProps) {
   const groupedTasks = groupTasksByStatus(tasks);
+
+  const columnOrder: Status[] = [
+    Status.Backlog,
+    Status.Todo,
+    Status.InProgress,
+    Status.Done,
+    Status.Cancelled,
+  ];
 
   if (loading) {
     return <CardSkeleton />;
@@ -30,17 +40,31 @@ export default function TaskGridView({
 
   return (
     <div className="flex gap-4">
-      {Object.entries(groupedTasks).map(([status, statusTasks]) => (
-        <TaskColumn
-          key={status}
-          title={formatStatus(status)}
-          count={statusTasks.length.toString()}
-        >
-          {statusTasks.map((task) => (
-            <TaskCard key={task.id} id={task.id} task={task} />
-          ))}
-        </TaskColumn>
-      ))}
+      {columnOrder.map((status) => {
+        const statusTasks = groupedTasks[status] || [];
+        return (
+          <TaskColumn
+            key={status}
+            title={formatStatus(status)}
+            count={statusTasks.length.toString()}
+          >
+            {statusTasks.length === 0 ? (
+              <CardPlaceholder />
+            ) : (
+              statusTasks
+                .sort((a, b) => a.position - b.position)
+                .map((task, index) => (
+                  <TaskCard
+                    key={task.id}
+                    id={task.id}
+                    task={task}
+                    index={index}
+                  />
+                ))
+            )}
+          </TaskColumn>
+        );
+      })}
     </div>
   );
 }
