@@ -1,6 +1,6 @@
 import { DialogFooter } from "../index";
 import { Button } from "@/components/common/Button";
-import { Spinner } from "@components/ui/Spinner";
+import { Spinner } from "@/components/common/Spinner";
 import type { TaskDialogFooterProps } from "@types";
 
 export const TaskDialogFooter = ({
