@@ -149,6 +149,7 @@ export interface TaskCardProps {
   id: string;
   task: Task;
   onAction?: (action: TaskAction) => void;
+  index: number;
 }
 
 // Image Types

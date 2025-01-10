@@ -1,9 +1,10 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { Task, TaskTag } from "@graphql/graphql";
+import { Status, Task, TaskTag } from "@graphql/graphql";
 import { PointEstimate, PointEstimateToNumber } from "@graphql/graphql";
 import { TagName, TagVariant } from "@types";
 import { addDays, format, isAfter, isBefore, isToday } from "date-fns";
+import { DraggableStateSnapshot } from "@hello-pangea/dnd";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -138,6 +139,7 @@ export const getTimeOfDayGreeting = () => {
     return "Good night";
   }
 };
+
 export const getDueDateStatusClass = (dueDate: Date) => {
   const today = new Date();
 
@@ -147,5 +149,34 @@ export const getDueDateStatusClass = (dueDate: Date) => {
     return "bg-tertiary-4";
   } else {
     return "bg-secondary-4";
+  }
+};
+
+export const setDraggableBackgroundColor = (
+  snapshot: DraggableStateSnapshot,
+): string => {
+  if (snapshot.isDragging) {
+    return "bg-neutral-4 shadow-xl opacity-90";
+  }
+  if (snapshot.draggingOver) {
+    return "bg-blue-500";
+  }
+  return "bg-neutral-4";
+};
+
+export const getDroppableColumnStatus = (status: string): Status => {
+  switch (status.split("-")[1]) {
+    case "Todo":
+      return Status.Todo;
+    case "In Progress":
+      return Status.InProgress;
+    case "Done":
+      return Status.Done;
+    case "Cancelled":
+      return Status.Cancelled;
+    case "Backlog":
+      return Status.Backlog;
+    default:
+      throw new Error(`Unknown status: ${status}`);
   }
 };
