@@ -11,7 +11,7 @@ const tagStyles = {
     warningOutline: "border border-yellow-500 text-tertiary-4",
     infoOutline: "border border-blue-500 text-blue-500",
     neutralOutline: "border border-neutral-500 text-neutral-1",
-    none: "bg-opacity-0 text-neutral-1",
+    none: "bg-opacity-0 text-neutral-1 p-0",
   },
 } as const;
 
