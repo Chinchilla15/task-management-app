@@ -8,6 +8,7 @@ import { Button } from "@components/common/Button";
 import Header from "../ui/Header";
 import { paths } from "@/config/paths";
 import { useDebounce } from "@/hooks/useDebounce";
+import { TaskViewControls } from "../common/TaskViewControls";
 
 export default function BaseLayout() {
   const [viewType, setViewType] = useState<ViewType>("grid");
@@ -34,10 +35,16 @@ export default function BaseLayout() {
         <MasterSidebar isOpen={isSidebarOpen} onClose={handleOnClose} />
         <div className="flex flex-1 flex-col overflow-hidden">
           {shouldShowHeader && (
-            <Header
-              searchQuery={searchQuery}
-              onSearch={debouncedSetSearchQuery}
-            />
+            <>
+              <Header
+                searchQuery={searchQuery}
+                onSearch={debouncedSetSearchQuery}
+              />
+              <TaskViewControls
+                viewType={viewType}
+                onViewChange={setViewType}
+              />
+            </>
           )}
           <Button
             variant="primary"
