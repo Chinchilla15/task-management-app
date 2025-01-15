@@ -61,7 +61,7 @@ Screenshots TBA
 
 1. Clone the repository:
    ```sh
-   git clone /Users/alessandrochinchilla/Developer/Nerdery/task-management-challenge
+   git clone https://github.com/Chinchilla15/task-management-app.git
    ```
 2. Navigate to the project directory and install dependencies:
    ```sh
@@ -195,3 +195,42 @@ Screenshots TBA
    ## Routing
 
    A dedicated `router` folder is included to manage the application's routes. React Router is used to configure paths and render the appropriate components, ensuring a seamless navigation experience.
+
+   This PR includes the final implementation of the Task Management Dashboard for the Nerdery trainee program.
+
+   ## Key Features Added:
+
+   ### Task Management Functionality:
+
+   - Create, view, organize, and delete tasks.
+   - Group tasks by status (Backlog, Todo, In Progress, Done, Cancelled).
+   - Assign task details, including points, due dates, tags, and assignees.
+
+   ### Interactive UI Enhancements:
+
+   - Drag-and-drop task reordering.
+   - Collapsible task groups for better task management.
+   - Task filtering via header search input.
+   - Keyboard navigation support for dialogs and modals.
+
+   ### Views and Responsiveness:
+
+   - Grid view (Kanban-style).
+   - List view with detailed task information.
+   - Fully responsive design optimized for multiple devices.
+
+   ### Apollo Client Integration:
+
+   - Integrated GraphQL API with queries and mutations.
+   - Implemented pagination and optimistic updates.
+
+   ### Other Notable Features:
+
+   - Loading skeletons for smooth UX during data fetching.
+   - Custom reusable components (Dialog, Select, etc.).
+   - Accessible and keyboard-navigable UI.
+
+   ## Tech Stack:
+
+   - React 18, TypeScript, Tailwind CSS, Apollo Client, React Context.
+   - Built with Vite for fast development.
