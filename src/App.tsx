@@ -6,9 +6,12 @@ import { useTaskDrag } from "./components/tasks/hooks/useTaskDrag";
 
 function App() {
   const { handleDragEnd } = useTaskDrag();
-  const onDragEnd = useCallback((result: DropResult) => {
-    handleDragEnd(result);
-  }, []);
+  const onDragEnd = useCallback(
+    (result: DropResult) => {
+      handleDragEnd(result);
+    },
+    [handleDragEnd],
+  );
   return (
     <DragDropContext
       autoScrollerOptions={{
