@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Dialog Primitives > Dialog content is rendered correctly 1`] = `<DocumentFragment />`;
+
+exports[`Dialog Primitives > Dialog opens and closes correctly 1`] = `
+<DocumentFragment>
+  <button
+    class="rounded-lg font-medium focus:outline-none p-2 transition-all ease-out duration-300 bg-primary-4 text-white hover:bg-primary-2 active:bg-primary-3 text-base"
+  >
+    Open Dialog
+  </button>
+</DocumentFragment>
+`;

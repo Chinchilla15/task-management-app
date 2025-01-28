@@ -7,6 +7,69 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Neutral Colors */
+  --color-neutral-1: #ffffff;
+  --color-neutral-2: #94979a;
+  --color-neutral-3: #393d41;
+  --color-neutral-4: #2c2f33;
+  --color-neutral-5: #222528;
+
+  /* Primary Colors */
+  --color-primary-1: #f4ccc8;
+  --color-primary-2: #eba59e;
+  --color-primary-3: #e27d73;
+  --color-primary-4: #da584b;
+
+  /* Secondary Colors */
+  --color-secondary-1: #c8e1bc;
+  --color-secondary-2: #aad199;
+  --color-secondary-3: #8dc275;
+  --color-secondary-4: #70b252;
+
+  /* Tertiary Colors */
+  --color-tertiary-1: #f9eed7;
+  --color-tertiary-2: #f2daab;
+  --color-tertiary-3: #ebc77f;
+  --color-tertiary-4: #e5b454;
+
+  /* Font Sizes, Line Heights, and Letter Spacing for Display */
+  --font-display-xl-size: 64px;
+  --font-display-xl-line-height: 88px;
+  --font-display-xl-letter-spacing: 1px;
+
+  --font-display-l-size: 56px;
+  --font-display-l-line-height: 72px;
+  --font-display-l-letter-spacing: 1px;
+
+  --font-display-m-size: 48px;
+  --font-display-m-line-height: 56px;
+  --font-display-m-letter-spacing: 1px;
+
+  --font-display-s-size: 32px;
+  --font-display-s-line-height: 48px;
+  --font-display-s-letter-spacing: 1px;
+
+  --font-display-xs-size: 24px;
+  --font-display-xs-line-height: 32px;
+  --font-display-xs-letter-spacing: 1px;
+
+  /*Font Sizes, Line Heights, and Letter Spacing for Body */
+  --font-body-xl-size: 20px;
+  --font-body-xl-line-height: 32px;
+  --font-body-xl-letter-spacing: 0.75px;
+
+  --font-body-l-size: 18px;
+  --font-body-l-line-height: 32px;
+  --font-body-l-letter-spacing: 0.75px;
+
+  --font-body-m-size: 15px;
+  --font-body-m-line-height: 24px;
+  --font-body-m-letter-spacing: 0.75px;
+
+  --font-body-s-size: 13px;
+  --font-body-s-line-height: 22px;
+  --font-body-s-letter-spacing: 0.25px;
 }
 
 * {
@@ -15,3 +78,77 @@
   padding: 0;
 }
 
+svg {
+  fill: currentColor;
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-neutral-3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.react-datepicker {
+  @apply bg-neutral-5 text-neutral-1;
+}
+
+.react-datepicker__week {
+  @apply grid grid-cols-7 gap-1;
+}
+
+.react-datepicker__day-names {
+  @apply grid grid-cols-7 gap-1 border-t border-neutral-2 py-2;
+}
+
+.react-datepicker__day-name {
+  @apply text-center text-sm font-medium text-neutral-2;
+}
+
+.react-datepicker__day {
+  @apply flex h-8 w-8 cursor-pointer items-center justify-center rounded-sm text-sm;
+}
+
+.react-datepicker__day--selected {
+  @apply border border-primary-4 font-semibold text-neutral-1;
+}
+
+.react-datepicker__day--today {
+  @apply font-bold text-primary-1;
+}
+
+.react-datepicker__day--outside-month {
+  @apply text-neutral-2 opacity-50;
+}
+
+.react-datepicker__month-dropdown,
+.react-datepicker__year-dropdown {
+  @apply mt-1 rounded-md border border-neutral-2 bg-neutral-3;
+}
+
+.react-datepicker__year-option {
+  @apply cursor-pointer text-sm hover:bg-neutral-4;
+}
+
+.react-datepicker__aria-live {
+  position: absolute;
+  clip-path: circle(0);
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  width: 1px;
+  white-space: nowrap;
+}

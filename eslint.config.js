@@ -24,6 +24,8 @@ export default tseslint.config(
         "warn",
         { allowConstantExport: true },
       ],
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
       semi: ["error", "always"],
       quotes: ["error", "double"],
       "no-unused-vars": "warn",
